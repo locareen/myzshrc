@@ -77,5 +77,10 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-finish
 fi
 alias ls='ls --color=auto'
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+if [ $TERM != "linux" ]; then
+    setxkbmap -option "ctrl:nocaps"
+else
+    export LANG=C
+fi
+alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
+alias dmount='mount -o loop,rw,offset=1048576'
