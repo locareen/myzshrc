@@ -84,3 +84,4 @@ else
 fi
 alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
 alias dmount='mount -o loop,rw,offset=1048576'
+export EDITOR=vim
