@@ -23,7 +23,6 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -75,12 +74,6 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     }
     zle -N zle-line-init
     zle -N zle-line-finish
-fi
-alias ls='ls --color=auto'
-if [ $TERM != "linux" ]; then
-    setxkbmap -option "ctrl:nocaps"
-else
-    export LANG=C
 fi
 alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
 alias dmount='mount -o loop,rw,offset=1048576'
