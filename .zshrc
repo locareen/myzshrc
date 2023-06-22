@@ -76,12 +76,18 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-init
     zle -N zle-line-finish
 fi
+<<<<<<< HEAD
 #if [ $TERM != "linux" ]; then
+=======
+if [ $TERM != "linux" ]; then
+    setxkbmap -option "ctrl:nocaps"
+>>>>>>> refs/remotes/origin/master
     alias l='lsd'
     alias ls='lsd'
     alias la='lsd -a'
     alias ll='lsd -l'
     alias lla='lsd -al'
+<<<<<<< HEAD
 #else
     #export LANG=C
     #alias l='ls --color'
@@ -94,6 +100,20 @@ alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > 
 #alias dmount='mount -o loop,rw,offset=1048576'
 alias less='bat'
 #alias find='fd'
+=======
+else
+    export LANG=C
+    alias l='ls --color'
+    alias ls='ls --color'
+    alias la='ls --color -a'
+    alias ll='ls --color -l'
+    alias lla='ls --color -al'
+fi
+alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
+alias dmount='mount -o loop,rw,offset=1048576'
+alias less='bat'
+alias find='fd'
+>>>>>>> refs/remotes/origin/master
 export EDITOR=vim
 
 
@@ -117,10 +137,13 @@ colors
 ##-- Pass to the path --#
 [[ -d ~/.bin ]] && export PATH="~/.bin:${PATH}"
 
+<<<<<<< HEAD
 export PATH='/usr/local/cuda/bin:/mnt/c/Users/yangn/AppData/Local/Programs/Microsoft VS Code/bin:/opt/flutter/bin:/opt/android-sdk/tools/bin':${PATH}
 
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
+=======
+>>>>>>> refs/remotes/origin/master
 
 ##-- PROMPT --#
 if [[ ${TERM} = linux ]]; then
