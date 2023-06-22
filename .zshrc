@@ -76,11 +76,66 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-init
     zle -N zle-line-finish
 fi
-alias ls='ls --color=auto'
-if [ $TERM != "linux" ]; then
-    setxkbmap -option "ctrl:nocaps"
-else
-    export LANG=C
-fi
+#if [ $TERM != "linux" ]; then
+    alias l='lsd'
+    alias ls='lsd'
+    alias la='lsd -a'
+    alias ll='lsd -l'
+    alias lla='lsd -al'
+#else
+    #export LANG=C
+    #alias l='ls --color'
+    #alias ls='ls --color'
+    #alias la='ls --color -a'
+    #alias ll='ls --color -l'
+    #alias lla='ls --color -al'
+#fi
 alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
-alias dmount='mount -o loop,rw,offset=1048576'
+#alias dmount='mount -o loop,rw,offset=1048576'
+alias less='bat'
+#alias find='fd'
+export EDITOR=vim
+
+
+#-- Do not sound --#
+setopt nolistbeep
+setopt nolistbeep
+
+
+##-- Save history. --#
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt share_history
+
+
+##-- Make colors available --#
+autoload -Uz colors
+colors
+
+
+##-- Pass to the path --#
+[[ -d ~/.bin ]] && export PATH="~/.bin:${PATH}"
+
+export PATH='/usr/local/cuda/bin:/mnt/c/Users/yangn/AppData/Local/Programs/Microsoft VS Code/bin:/opt/flutter/bin:/opt/android-sdk/tools/bin':${PATH}
+
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+
+
+##-- PROMPT --#
+if [[ ${TERM} = linux ]]; then
+    PROMPT='%B%F{red}%(?..%? )%f%b%B%F{red}%n%f%b@%m %B%40<..<%~%<< %b%# '
+else
+    powerline-daemon -q
+    source /usr/share/powerline/bindings/zsh/powerline.zsh
+fi
+
+#-- Like fish prompt --#
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+PATH="/home/ksmt/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/ksmt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/ksmt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/ksmt/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/ksmt/perl5"; export PERL_MM_OPT;
